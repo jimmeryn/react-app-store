@@ -68,7 +68,6 @@ class Counters extends Component {
           <p
             key={suggestions.indexOf(item)}
             onClick={() => this.suggestionSelected(item)}
-            style={{ border: "solid" }}
           >
             {item}
           </p>
