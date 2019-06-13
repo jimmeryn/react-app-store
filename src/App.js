@@ -57,7 +57,7 @@ class App extends Component {
       counters[index] = { ...counter };
       counters[index].quantity--;
       this.setState({ counters });
-    } else alert(`Value of ${counters[index].name} is already zero!`);
+    } else alert(`Quantity of ${counters[index].name} is already zero!`);
   };
 
   handleDelete = counterId => {
