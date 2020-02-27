@@ -6,26 +6,12 @@ import Search from "../Images/search1.png";
 class Counters extends Component {
   constructor(props) {
     super(props);
-    this.items = [];
+    this.items = require("../data-master/data.json").properties;
     this.state = {
       suggestions: [],
       isLoading: false,
       text: ""
     };
-  }
-
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    fetch("https://my-json-server.typicode.com/jimmeryn/data/users")
-      .then(res => res.json())
-      .then(result => {
-        this.items = result;
-        this.setState({ isLoading: false });
-      })
-      .catch(error => {
-        this.setState({ isLoading: false });
-        console.log(error);
-      });
   }
 
   onTextChange = e => {

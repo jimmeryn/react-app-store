@@ -17,29 +17,9 @@ class App extends Component {
 
     this.state = {
       counters: [],
-      dataApi: [],
+      dataApi: require("./data-master/data.json").properties,
       isLoaded: false
     };
-  }
-
-  fetchData = page => {
-    fetch(page)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({ dataApi: result, isLoaded: true });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
-  };
-
-  componentDidMount() {
-    this.fetchData("https://my-json-server.typicode.com/jimmeryn/data/users");
   }
 
   handleIncrement = counter => {
@@ -85,7 +65,7 @@ class App extends Component {
       ];
       this.setState({ counters: counters });
     } else {
-      console.log(`There is no such product with given key: ${dataKey}`);
+      console.error(`There is no such product with given key: ${dataKey}`);
       throw new Error();
     }
   };
@@ -131,9 +111,8 @@ class App extends Component {
   };
 
   render() {
-    const { error, isLoaded } = this.state;
+    const { error } = this.state;
     if (error) return <div>Error: {error.message}</div>;
-    else if (isLoaded === false) return <div>Loading...</div>;
     else
       return (
         <BrowserRouter>

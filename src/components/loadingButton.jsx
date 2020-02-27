@@ -15,12 +15,15 @@ class LoadingButton extends React.Component {
     };
   }
 
-  handleClick() {
+  handleClick(aditionalFnc) {
     this.setState({ isLoading: true }, () => {
       simulateNetworkRequest().then(() => {
         this.setState({ isLoading: false });
       });
     });
+    if (aditionalFnc != null && typeof aditionalFnc === "function") {
+      aditionalFnc();
+    }
   }
 
   render() {
